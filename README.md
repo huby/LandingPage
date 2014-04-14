@@ -1,4 +1,0 @@
-LandingPage
-===========
-
-LandingPageTemplate
