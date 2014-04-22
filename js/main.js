@@ -1,4 +1,32 @@
 jQuery(document).ready(function(){
+
+    $('input, textarea').placeholder();
+
+    //slider
+    var jcarousel = $('#slider');
+    jcarousel
+        .on('jcarousel:reload jcarousel:create', function () {
+
+            jcarousel.jcarousel('items').css('width', '440px');
+        })
+        .jcarousel({
+            wrap: 'last',
+            btnNext: ".button-next",
+            btnPrev: ".button-prev"
+        })
+        .jcarouselAutoscroll({
+            interval: 3000
+        });
+
+    $('.button-prev')
+        .jcarouselControl({
+            target: '-=1'
+        });
+    $('.button-next')
+        .jcarouselControl({
+            target: '+=1'
+        });
+
     /* google map*/
     function initialize() {
         var myLatlng = new google.maps.LatLng(-12.109068,-77.031412);
@@ -61,43 +89,43 @@ jQuery(document).ready(function(){
     });
 
     /* form validate*/
-    function validateNombres(field){
-        if (field == "") return "-Ingresar nombres y apellidos validos.\n"
+    function validateString(name,field){
+        var testString = /^[a-zA-Z]*$/;
+        if (field == "") {
+            return "-Ingresar " + name + " validos.\n"
+        }else {
+            if(!testString.test(field)) return "-Ingresar " + name + " valido.\n"
+        }
         return ""
     };
 
-    function validatePhone(field) {
+    function validatePhone(name, field) {
         if(field == ""){
-            return "-Ingresar número de teléfono valido.\n"
+            return "-Ingresar número de " + name + " valido.\n"
         }else{
-            if (isNaN(field)) return "-Ingresar número de teléfono valido.\n"
+            if (isNaN(field)) return "-Ingresar número de " + name + " valido.\n"
         }
         return ""
     }
 
-    function validateEmail(field) {
+    function validateEmail(name, field) {
         var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
         if(field == ""){
-            return "-Ingresar correo valido.\n"
+            return "-Ingresar "+ name +" valido.\n"
         } else{
-            if (testEmail.test(field)){
-                return ""
-            } else{
-                return "-Ingresar correo valido.\n"
-            }
+            if (!testEmail.test(field)) return "-Ingresar "+ name +" valido.\n"
         }
+        return ""
     }
 
-    function validateMessage(field){
-        if (field == "") return "-Ingresar un mensaje válido.\n"
-        return ""
-    };
     function validate()
     {
-        fail = validateNombres($('form').find('#nombres').val())
-        fail += validateEmail($('form').find('#correo').val())
-        fail += validatePhone($('form').find('#telefono').val())
-        fail += validateMessage($('form').find('#mensaje').val())
+        fail = validateString($('form').find('#nombres').attr('placeholder') ,$('form').find('#nombres').val())
+        fail += validateEmail($('form').find('#correo').attr('placeholder'),$('form').find('#correo').val())
+        fail += validatePhone($('form').find('#telefono').attr('placeholder'),$('form').find('#telefono').val())
+        fail += validateString($('form').find('#mensaje').attr('placeholder'),$('form').find('#mensaje').val())
+        fail += validateString($('form').find('#empresa').attr('placeholder'),$('form').find('#empresa').val())
+        fail += validateString($('form').find('#asunto').attr('placeholder'),$('form').find('#asunto').val())
         if (fail == "") return true
         else { return false }
     }
@@ -133,10 +161,12 @@ jQuery(document).ready(function(){
                 }
             }, "json");
         } else{
-            fail = validateNombres($('form').find('#nombres').val())
-            fail += validateEmail($('form').find('#correo').val())
-            fail += validatePhone($('form').find('#telefono').val())
-            fail += validateMessage($('form').find('#mensaje').val())
+            fail = validateString($('form').find('#nombres').attr('placeholder') ,$('form').find('#nombres').val())
+            fail += validateEmail($('form').find('#correo').attr('placeholder'),$('form').find('#correo').val())
+            fail += validatePhone($('form').find('#telefono').attr('placeholder'),$('form').find('#telefono').val())
+            fail += validateString($('form').find('#mensaje').attr('placeholder'),$('form').find('#mensaje').val())
+            fail += validateString($('form').find('#empresa').attr('placeholder'),$('form').find('#empresa').val())
+            fail += validateString($('form').find('#asunto').attr('placeholder'),$('form').find('#asunto').val())
             alert(''+fail);
         }
     });

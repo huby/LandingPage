@@ -322,6 +322,27 @@ select[multiple].input-lg {
 }
 
 /* ==========================================================================
+   Author's alerts styles
+   ========================================================================== */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.alert {
+    font-size: 14px;
+    border-radius: 0;
+}
+.alert-danger {
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+}
+
+
+
+/* ==========================================================================
    Author's modal styles
    ========================================================================== */
 
