@@ -89,15 +89,26 @@ jQuery(document).ready(function(){
     });
 
     /* form validate*/
+    /* form validate*/
     function validateString(name,field){
-        var testString = /^[a-zA-Z]*$/;
+        var testString = /^[a-zA-ZÁáÓóÉéÍíÚÜúüÑñ]*$/;
         if (field == "") {
             return "-Ingresar " + name + " validos.\n"
         }else {
             if(!testString.test(field)) return "-Ingresar " + name + " valido.\n"
         }
         return ""
-    };
+    }
+
+    function validateAlphaNumeric(name,field){
+        var testString = /^[a-zA-ZÁáÓóÉéÍíÚÜúüÑñ0-9]+$/;
+        if (field == "") {
+            return "-Ingresar " + name + " validos.\n"
+        }else {
+            if(!testString.test(field)) return "-Ingresar " + name + " valido.\n"
+        }
+        return ""
+    }
 
     function validatePhone(name, field) {
         if(field == ""){
