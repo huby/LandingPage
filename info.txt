@@ -1,0 +1,1 @@
+--se agrego archivo info.txt
